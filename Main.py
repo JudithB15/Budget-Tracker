@@ -91,6 +91,16 @@ def add_expense():
     elif budget > 0 and remaining_budget <= budget * 0.1:
         print("WARNING: Less than 10% of your budget remaining.")
 
+def display_expenses():
+
+    if len(expenses) == 0:
+        print("No expenses recorded.")
+        return
+
+    print("\nExpenses")
+
+    for index, expense in enumerate(expenses, start=1):
+        print(f"{index}. {expense['category']} - £{expense['amount']:.2f}")
 
     
 
