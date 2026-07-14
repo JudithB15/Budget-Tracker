@@ -103,13 +103,69 @@ def display_expenses():
         print(f"{index}. {expense['category']} - £{expense['amount']:.2f}")
 
 def display_balance():
-    
+
+    total_expenses =sum(item["amount"] for item in expenses)
     remaining_budget = budget - total_expenses
     
     print(F"Remaining Budget: £{remaining_budget}")  
 
 def display_summary():
      if len(expenses) == 0:
+         print("No Expenses recorded")
+         return
+         
+     total_expenses = sum(item["amount"] for item in expenses)
+     remaining_budget = budget - total_expenses
+
+     category_totals = {}
+
+     for expense in expenses:
+        category = expense["category"]
+        amount = expense["amount"]
+
+        if category in category_totals:
+            category_totals[category] += amount
+
+        else:
+            category_totals[category] = amount
+
+     print(f"Budget: £{budget}")
+     print(f"Total Spent: £{total_expenses}")
+     print(f"Remaining Budget: £{remaining_budget}")
+
+     for category, total in category_totals.items():
+        print(f"{category}: £{total}")
+
+def menu():
+    
+    print("1. Set Budget")
+    print("2. Add Expense")
+    print("3. Display Expenses")
+    print("4. Display Balance")
+    print("5. Display Summary")
+    print("6. Save and Exit")
+    
+    choice = input("Enter your choice (1-7): ")
+    return choice
+
+while True:
+    choice = menu()
+
+    if choice == "1":
+        set_budget()
+    elif choice =="2":
+        add_expense()
+    elif choice =="3":
+        display_expenses()
+    elif choice == "4":
+        display_balance()
+    elif choice == "5":
+        display_summary()
+    elif choice == "6":
+        save_data()
+        break
+    else:
+        print("Invalid Choice. please select a number between 1 and 7")
      
     
 
