@@ -102,8 +102,14 @@ def display_expenses():
     for index, expense in enumerate(expenses, start=1):
         print(f"{index}. {expense['category']} - £{expense['amount']:.2f}")
 
+def display_balance():
     
+    remaining_budget = budget - total_expenses
+    
+    print(F"Remaining Budget: £{remaining_budget}")  
 
-
+def display_summary():
+     if len(expenses) == 0:
+     
     
 
